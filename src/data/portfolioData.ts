@@ -7,8 +7,6 @@ import type {
   SkillGroup,
 } from '../types/portfolio'
 
-const base = import.meta.env.BASE_URL
-
 export const skillGroups: SkillGroup[] = [
   {
     title: 'Languages',
@@ -80,7 +78,7 @@ export const experiences: Experience[] = [
     type: 'Internship',
     summary:
       'Supported the development, testing and improvement of internal enterprise systems used across the organization.',
-    image: `${base}images/experience/mediacorp-internship.jpeg`,
+    image: `images/experience/mediacorp-internship.jpeg`,
     imageAlt: 'Mediacorp Enterprise Apps internship',
     details: [
       'Designed an approval workflow using Jira Automation and Microsoft Power Automate.',
@@ -101,7 +99,7 @@ export const projects: Project[] = [
     description:
       'Designed and implemented a bidirectional approval workflow integrating Jira Service Management with Microsoft Power Automate using REST APIs and HTTP webhooks. Automated approval routing via Outlook and Microsoft Teams, and synchronized approval outcomes back to Jira including status updates, comments and approver tracking.',
     stack: ['Jira Automation', 'Power Automate', 'REST APIs'],
-    image: `${import.meta.env.BASE_URL}images/projects/workflow.png`,
+    image: `images/projects/workflow.png`,
   },
   {
     title: 'ERP System for a Local Spa Business',
@@ -110,7 +108,7 @@ export const projects: Project[] = [
     description:
       'Developed an ERP system for a local spa business as part of a 14-member team. Served as Assistant Team Leader and contributed to Service/Product Management, Sales History and Employee Timetable modules across frontend and backend. Conducted client onboarding and refined features based on feedback, supported by use case and UML documentation.',
     stack: ['React', 'Node.js', 'PostgreSQL'],
-    image: `${import.meta.env.BASE_URL}images/projects/erp.jpeg`,
+    image: `images/projects/erp.jpeg`,
   },
   {
     title: 'Cleaning Service Website',
@@ -119,7 +117,7 @@ export const projects: Project[] = [
     description:
       'Designed and developed a full-stack booking and management system in a 3-member team. Implemented admin features for managing services, bookings and user accounts using MVC architecture with JSP/Servlets and DAO pattern, including RESTful APIs for system integration.',
     stack: ['Jakarta EE', 'PostgreSQL', 'Eclipse'],
-    image: `${import.meta.env.BASE_URL}images/projects/cleaning.png`,
+    image: `images/projects/cleaning.png`,
   },
   {
     title: 'EcoHome Energy Monitoring App',
@@ -128,7 +126,7 @@ export const projects: Project[] = [
     description:
       'Applied the CDIO framework to design a low-code mobile prototype for monitoring home energy usage. Conducted persona analysis, feasibility studies and system design using diagrams and flows, and implemented the solution using Mendix (microflows, workflows and pages), Node-RED and MySQL.',
     stack: ['Mendix', 'Node-RED', 'MySQL'],
-    image: `${import.meta.env.BASE_URL}images/projects/ecohome.png`,
+    image: `images/projects/ecohome.png`,
   },
   {
     title: 'Smart Pet Feeder IoT System',
@@ -137,7 +135,7 @@ export const projects: Project[] = [
     description:
       'Applied the CDIO framework to design and develop a smart pet feeder system. Implemented scheduled feeding and remote control via Telegram bot using Python and Raspberry Pi, with sensors for food level monitoring and motion detection.',
     stack: ['Python', 'Raspberry Pi', 'IoT'],
-    image: `${import.meta.env.BASE_URL}images/projects/iot.png`,
+    image: `images/projects/iot.png`,
   },
 ]
 
@@ -183,37 +181,37 @@ export const activities: Activity[] = [
     title: 'Pathways in Python Tech for Good Hackathon 2026',
     description:
       'Achieved second place for developing an LLM-powered desktop application using Python, PyGame, and API-based LLM integrations.',
-    image: `${base}images/activities/hackathon.png`,
+    image: `images/activities/hackathon.png`,
   },
   {
     title: 'SIGNature Song-Signing Showcase',
     description:
       'Participated in the SIGNature Song-Signing Showcase for the Deaf community at Singapore Polytechnic.',
-    image: `${base}images/activities/signature.jpeg`,
+    image: `images/activities/signature.jpeg`,
   },
   {
     title: 'Overseas Study Trip to Kuala Lumpur',
     description:
       'Joined the School of Computing overseas study trip to Kuala Lumpur, Malaysia.',
-    image: `${base}images/activities/kl.jpeg`,
+    image: `images/activities/kl.jpeg`,
   },
   {
     title: 'Seniors Appreciation Concert',
     description:
       'Participated in the Seniors Appreciation Concert at Singapore Polytechnic.',
-    image: `${base}images/activities/appreciation.jpeg`,
+    image: `images/activities/appreciation.jpeg`,
   },
   {
     title: 'Basic Peer Support Skills Training',
     description:
       'Completed Basic Peer Support Skills Training under the Department of Student Services.',
-    image: `${base}images/activities/peer-support.png`,
+    image: `images/activities/peer-support.png`,
   },
   {
     title: 'SG Clean Day',
     description:
       'Participated in SG Clean Day as part of community volunteering.',
-    image: `${base}images/activities/sg-cleanday.png`,
+    image: `images/activities/sg-cleanday.png`,
   },
 ]
 

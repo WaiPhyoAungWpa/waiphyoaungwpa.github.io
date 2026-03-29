@@ -157,7 +157,7 @@ function App() {
 
               <div className="hero-photo-frame">
                 <img
-                  src={`${import.meta.env.BASE_URL}images/profile.jpeg`}
+                  src={`images/profile.jpeg`}
                   alt="Profile portrait"
                   className="hero-photo"
                 />
