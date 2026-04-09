@@ -20,7 +20,7 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: 'Frontend & Backend',
+    title: 'Frameworks & APIs',
     featured: true,
     skills: [
       { name: 'React.js', featured: true },
@@ -38,14 +38,16 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: 'Tools & IDEs',
+    title: 'Tools & Platforms',
     skills: [
       { name: 'GitHub', featured: true },
       { name: 'Visual Studio Code', featured: true },
       { name: 'Microsoft Visual Studio' },
+      { name: 'Cursor' },
       { name: 'Eclipse' },
       { name: 'NetBeans' },
       { name: 'Postman' },
+      { name: 'Orange Data Mining' },
     ],
   },
   {
@@ -60,11 +62,10 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: 'Others',
+    title: 'Practices & Methods',
     skills: [
       { name: 'Software Engineering Practices', featured: true },
       { name: 'CI/CD Workflows' },
-      { name: 'Orange Data Mining' },
     ],
   },
 ]
@@ -97,59 +98,93 @@ export const projects: Project[] = [
     featured: true,
     type: 'Internship Project',
     description:
-      'Designed and implemented a bidirectional approval workflow integrating Jira Service Management with Microsoft Power Automate using REST APIs and HTTP webhooks. Automated approval routing via Outlook and Microsoft Teams, and synchronized approval outcomes back to Jira including status updates, comments and approver tracking.',
-    stack: ['Jira Automation', 'Power Automate', 'REST APIs'],
+      'Designed and implemented an approval workflow integrating Jira Service Management with Microsoft Power Automate using REST APIs and HTTP webhooks.',
+    stack: ['Jira Automation', 'Microsoft Power Automate'],
     image: `images/projects/workflow.png`,
+    details: [
+      'Automated approval routing by extracting approvers from Jira issues and sending requests via Outlook and Microsoft Teams.',
+      'Synchronized approval outcomes back to Jira, including status updates, comments and approver tracking.',
+    ],
+    photos: ['images/projects/workflow.png'],
+    videoUrl: '',
   },
   {
-    title: 'ERP System for a Local Spa Business',
+    title: 'ERP System for Spa Business',
     period: 'Apr – Jul 2025',
-    type: 'Real Client Project',
+    type: 'Client Project',
     description:
-      'Developed an ERP system for a local spa business as part of a 14-member team. Served as Assistant Team Leader and contributed to Service/Product Management, Sales History and Employee Timetable modules across frontend and backend. Conducted client onboarding and refined features based on feedback, supported by use case and UML documentation.',
+      'Developed an ERP system to support daily spa operations as part of a 14-member team.',
     stack: ['React', 'Node.js', 'PostgreSQL'],
     image: `images/projects/erp.jpeg`,
+    details: [
+      'Served as Assistant Team Leader, supporting team coordination and task planning.',
+      'Contributed to Service/Product Management, Sales History and Employee Timetable modules across frontend and backend.',
+      'Conducted client onboarding sessions and refined system features based on user feedback.',
+      'Produced project documentation including use case specifications and UML diagrams.',
+    ],
+    photos: ['images/projects/erp.jpeg'],
+    videoUrl: 'https://youtu.be/-BfXDBhM4xE',
   },
   {
     title: 'Cleaning Service Website',
     period: 'Jan – Feb 2025',
     type: 'Academic Project',
     description:
-      'Designed and developed a full-stack booking and management system in a 3-member team. Implemented admin features for managing services, bookings and user accounts using MVC architecture with JSP/Servlets and DAO pattern, including RESTful APIs for system integration.',
+      'Designed and developed a full-stack booking and management system from scratch, including ERD, wireframes and task planning.',
     stack: ['Jakarta EE', 'PostgreSQL', 'Eclipse'],
     image: `images/projects/cleaning.png`,
+    details: [
+      'Implemented MVC architecture using JSP and Servlets, with DAO pattern for database interactions.',
+      'Developed RESTful APIs to support system integration, including use in a reseller platform.',
+      'Implemented CRUD functionalities for services, bookings and user accounts using separate servlets for request handling.',
+    ],
+    photos: ['images/projects/cleaning.png'],
+    videoUrl: 'https://youtu.be/y9yvpn0LxhA?si=h3wphJLTnBF0jb45',
   },
   {
     title: 'EcoHome Energy Monitoring App',
     period: 'Jun – Jul 2024',
     type: 'Academic Project',
     description:
-      'Applied the CDIO framework to design a low-code mobile prototype for monitoring home energy usage. Conducted persona analysis, feasibility studies and system design using diagrams and flows, and implemented the solution using Mendix (microflows, workflows and pages), Node-RED and MySQL.',
+      'Applied the CDIO (Conceive–Design–Implement–Operate) framework to structure the development process.',
     stack: ['Mendix', 'Node-RED', 'MySQL'],
     image: `images/projects/ecohome.png`,
+    details: [
+      'Conducted persona research, target user analysis and idea evaluation to define the solution concept.',
+      'Produced feasibility-impact analysis, block diagrams, data flows and flowcharts for system design.',
+      'Developed a low-code prototype using Mendix with microflows, workflows and pages, MySQL for data management, and Node-RED for energy-saving logic.',
+    ],
+    photos: ['images/projects/ecohome.png'],
+    videoUrl: 'https://youtube.com/shorts/i4BjQyweDMI?feature=share',
   },
   {
     title: 'Smart Pet Feeder IoT System',
     period: 'Jan – Feb 2024',
     type: 'Academic Project',
     description:
-      'Applied the CDIO framework to design and develop a smart pet feeder system. Implemented scheduled feeding and remote control via Telegram bot using Python and Raspberry Pi, with sensors for food level monitoring and motion detection.',
-    stack: ['Python', 'Raspberry Pi', 'IoT'],
+      'Applied the CDIO framework to structure the development process.',
+    stack: ['Python', 'Raspberry Pi'],
     image: `images/projects/iot.png`,
+    details: [
+      'Conducted user and problem analysis and designed system architecture using block diagrams, data flows and flowcharts.',
+      'Implemented the system using Raspberry Pi and Python with scheduled feeding, Telegram bot control, and sensors for food level monitoring and motion detection.',
+    ],
+    photos: ['images/projects/iot.png'],
+    videoUrl: 'https://youtu.be/SzOXgIkv4I0',
   },
 ]
 
 export const education: EducationItem[] = [
   {
     school: 'Singapore Polytechnic',
-    qualification: 'Diploma in Information Technology',
+    qualification: 'Diploma in Information Technology (with Merit)',
     period: 'Apr 2023 – Apr 2026',
     details: [
       'Software Development Specialization',
       'Minor in 5G and Artificial Intelligence of Things (AIoT)',
       'Industry Now Curriculum Pathway (Project INC)',
-      'Director’s Honour Roll for Academic Excellence (AY2023/2024)',
-      'Director’s Honour Roll for Academic Excellence (AY2024/2025)',
+      'Director’s Honour Roll (2024, 2025)',
+      'Diploma with Merit & NCS Prize (2026)',
     ],
   },
   {
@@ -180,8 +215,14 @@ export const activities: Activity[] = [
   {
     title: 'Pathways in Python Tech for Good Hackathon 2026',
     description:
-      'Achieved second place for developing an LLM-powered desktop application using Python, PyGame, and API-based LLM integrations.',
-    image: `images/activities/hackathon.png`,
+      'Achieved second place for developing an LLM-powered desktop application using Python (PyGame), prompt engineering techniques and API-based LLM integrations.',
+    image: `images/activities/ntuPipHackathon.png`,
+  },
+  {
+    title: 'Autodesk Singapore AI Hackathon 2026',
+    description:
+      'Participated in the Autodesk × Singapore Polytechnic School of Computing AI Hackathon 2026, where our team developed a “Universal Mock Server” to streamline backend services through a single service.',
+    image: `images/activities/autodeskHackathon.jpeg`,
   },
   {
     title: 'SIGNature Song-Signing Showcase',

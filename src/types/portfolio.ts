@@ -30,6 +30,9 @@ export type Project = {
   stack: string[]
   image: string
   featured?: boolean
+  details: string[]
+  photos: string[]
+  videoUrl?: string
 }
 
 export type EducationItem = {

@@ -1,5 +1,6 @@
 import './App.css'
 import { useEffect, useMemo, useState } from 'react'
+import type { Project } from './types/portfolio'
 import {
   activities,
   contactItems,
@@ -12,6 +13,7 @@ import {
 function App() {
   const [showAllEducation, setShowAllEducation] = useState(false)
   const [showAllProjects, setShowAllProjects] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [activeActivityIndex, setActiveActivityIndex] = useState(0)
   const [copiedField, setCopiedField] = useState<string | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -57,6 +59,8 @@ function App() {
   }, [showAllEducation, showAllProjects])
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
+  const openProjectModal = (project: Project) => setSelectedProject(project)
+  const closeProjectModal = () => setSelectedProject(null)
 
   const nextActivity = () => {
     setActiveActivityIndex((prev) => (prev + 1) % activities.length)
@@ -196,7 +200,7 @@ function App() {
             <h2>Tools and technologies</h2>
             <p className="section-intro">
               Core technical stack across software engineering, databases,
-              automation, and low-code development.
+              automation and low-code development.
             </p>
           </div>
 
@@ -311,6 +315,14 @@ function App() {
                   </span>
                 ))}
               </div>
+
+              <button
+                className="button secondary project-details-button"
+                onClick={() => openProjectModal(featuredProject)}
+                type="button"
+              >
+                {'>> View details'}
+              </button>
             </div>
           </article>
 
@@ -359,6 +371,14 @@ function App() {
                           </span>
                         ))}
                       </div>
+
+                      <button
+                        className="button secondary project-details-button"
+                        onClick={() => openProjectModal(project)}
+                        type="button"
+                      >
+                        {'>> View details'}
+                      </button>
                     </div>
                   </article>
                 ))}
@@ -377,6 +397,77 @@ function App() {
             </div>
           )}
         </section>
+
+        {selectedProject && (
+          <div className="project-modal-overlay" onClick={closeProjectModal}>
+            <div
+              className="project-modal surface"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="project-modal-header">
+                <div>
+                  <p className="section-tag">Project details</p>
+                  <h3>{selectedProject.title}</h3>
+                </div>
+                <button
+                  className="button secondary project-modal-close"
+                  type="button"
+                  aria-label="Close project details"
+                  onClick={closeProjectModal}
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="project-modal-meta">
+                <span className="project-period">{selectedProject.period}</span>
+                <span className="project-card-badge">{selectedProject.type}</span>
+              </div>
+
+              <p className="body-copy project-description">
+                {selectedProject.description}
+              </p>
+
+              <div className="project-modal-section">
+                <h4>Detailed overview</h4>
+                <ul>
+                  {selectedProject.details.map((detail) => (
+                    <li key={detail}>{detail}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="project-modal-section">
+                <h4>Photos</h4>
+                <div className="project-modal-photos">
+                  {selectedProject.photos.map((photo) => (
+                    <img
+                      key={photo}
+                      src={photo}
+                      alt={`${selectedProject.title} screenshot`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="project-modal-section">
+                <h4>Video demo</h4>
+                {selectedProject.videoUrl ? (
+                  <a
+                    className="button secondary project-modal-video"
+                    href={selectedProject.videoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {'>> Watch demo'}
+                  </a>
+                ) : (
+                  <p>No demo video available for this project yet.</p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         <section id="education" className="section divider-top">
           <div className="section-heading reveal">
