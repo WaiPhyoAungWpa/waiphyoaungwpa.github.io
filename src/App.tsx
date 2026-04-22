@@ -45,6 +45,7 @@ function App() {
   const [activeActivityIndex, setActiveActivityIndex] = useState(0)
   const [copiedField, setCopiedField] = useState<string | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activityFlipKey, setActivityFlipKey] = useState(0)
 
   const firstEducation = education[0]
   const featuredExperience = experiences[0]
@@ -116,10 +117,12 @@ function App() {
     : null
 
   const nextActivity = () => {
+    setActivityFlipKey((prev) => prev + 1)
     setActiveActivityIndex((prev) => (prev + 1) % activities.length)
   }
 
   const prevActivity = () => {
+    setActivityFlipKey((prev) => prev + 1)
     setActiveActivityIndex((prev) =>
       prev === 0 ? activities.length - 1 : prev - 1,
     )
@@ -367,7 +370,17 @@ function App() {
             <h2>Selected work and technical builds</h2>
           </div>
 
-          <article className="project-featured surface reveal reveal-delay-1">
+          <article
+            className="project-featured surface reveal reveal-delay-1"
+            onClick={() => openProjectModal(featuredProject)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                openProjectModal(featuredProject)
+              }
+            }}
+          >
             <div className="project-featured-media">
               <img
                 src={featuredProject.image}
@@ -393,14 +406,6 @@ function App() {
                   </span>
                 ))}
               </div>
-
-              <button
-                className="button secondary project-details-button"
-                onClick={() => openProjectModal(featuredProject)}
-                type="button"
-              >
-                {'>> View details'}
-              </button>
             </div>
           </article>
 
@@ -424,6 +429,14 @@ function App() {
                     className={`project-showcase-card surface reveal ${
                       index % 2 === 0 ? 'reveal-delay-1' : 'reveal-delay-2'
                     }`}
+                    onClick={() => openProjectModal(project)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        openProjectModal(project)
+                      }
+                    }}
                   >
                     <div className="project-card-media">
                       <img
@@ -449,14 +462,6 @@ function App() {
                           </span>
                         ))}
                       </div>
-
-                      <button
-                        className="button secondary project-details-button"
-                        onClick={() => openProjectModal(project)}
-                        type="button"
-                      >
-                        {'>> View details'}
-                      </button>
                     </div>
                   </article>
                 ))}
@@ -637,63 +642,71 @@ function App() {
             <h2>Beyond academics and projects</h2>
           </div>
 
-          <div className="activities-carousel surface reveal reveal-delay-1">
-            <div className="activities-carousel-inner">
-              <div className="activities-carousel-media">
-                {activeActivity.image ? (
-                  <img
-                    src={activeActivity.image}
-                    alt={activeActivity.title}
-                    className="activities-carousel-image"
-                  />
-                ) : (
-                  <div className="activities-carousel-placeholder">
-                    <span>Activity</span>
-                  </div>
-                )}
-              </div>
+          <div className="activities-carousel-wrapper reveal reveal-delay-1">
+            <button
+              type="button"
+              className="carousel-button carousel-button-prev"
+              onClick={prevActivity}
+              aria-label="Previous activity"
+            >
+              ←
+            </button>
 
-              <div className="activities-carousel-content">
-                <p className="project-period">
-                  {activeActivityIndex + 1} / {activities.length}
-                </p>
-                <h3>{activeActivity.title}</h3>
-                <p>{activeActivity.description}</p>
-
-                <div className="activities-carousel-controls">
-                  <button
-                    type="button"
-                    className="carousel-button"
-                    onClick={prevActivity}
-                    aria-label="Previous activity"
-                  >
-                    ←
-                  </button>
-                  <button
-                    type="button"
-                    className="carousel-button"
-                    onClick={nextActivity}
-                    aria-label="Next activity"
-                  >
-                    →
-                  </button>
+            <div
+              className="activities-carousel surface"
+              onClick={(e) => {
+                if (window.innerWidth < 1024) {
+                  nextActivity()
+                }
+              }}
+            >
+              <div className="activities-carousel-inner" key={activityFlipKey}>
+                <div className="activities-carousel-media">
+                  {activeActivity.image ? (
+                    <img
+                      src={activeActivity.image}
+                      alt={activeActivity.title}
+                      className="activities-carousel-image"
+                    />
+                  ) : (
+                    <div className="activities-carousel-placeholder">
+                      <span>Activity</span>
+                    </div>
+                  )}
                 </div>
 
-                <div className="activities-carousel-dots">
-                  {activities.map((activity, index) => (
-                    <button
-                      key={activity.title}
-                      type="button"
-                      className={`carousel-dot ${
-                        index === activeActivityIndex ? 'is-active' : ''
-                      }`}
-                      onClick={() => setActiveActivityIndex(index)}
-                      aria-label={`View ${activity.title}`}
-                    />
-                  ))}
+                <div className="activities-carousel-content">
+                  <p className="project-period">
+                    {activeActivityIndex + 1} / {activities.length}
+                  </p>
+                  <h3>{activeActivity.title}</h3>
+                  <p>{activeActivity.description}</p>
+
+                  <div className="activities-carousel-dots">
+                    {activities.map((activity, index) => (
+                      <button
+                        key={activity.title}
+                        type="button"
+                        className={`carousel-dot ${
+                          index === activeActivityIndex ? 'is-active' : ''
+                        }`}
+                        onClick={() => setActiveActivityIndex(index)}
+                        aria-label={`View ${activity.title}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
+
+            <button
+              type="button"
+              className="carousel-button carousel-button-next"
+              onClick={nextActivity}
+              aria-label="Next activity"
+            >
+              →
+            </button>
           </div>
         </section>
 
