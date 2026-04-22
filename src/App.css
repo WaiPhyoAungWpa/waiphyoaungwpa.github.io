@@ -430,96 +430,143 @@
    SKILLS
 ========================= */
 
-.skills-group {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.skills-group-card {
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
-  border: 1px solid #e4e7ec;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 10px 28px rgba(16, 24, 40, 0.04);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-}
-
-@media (max-width: 1200px) {
-  .skills-group {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.skills-group-card:hover {
-  transform: translateY(-3px);
-  border-color: #d0d5dd;
-  box-shadow: 0 16px 36px rgba(16, 24, 40, 0.08);
-}
-
-.skills-group-card-featured {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, #f8fafc 100%);
-  border-color: #d0d5dd;
-}
-
-.skills-group-top {
-  margin-bottom: 0.8rem;
-}
-
-.skills-group-card h3 {
-  font-size: 1.05rem;
-  line-height: 1.2;
-  color: #101828;
-}
-
-.skills-grid {
+.skills-filter {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  justify-content: center;
 }
 
-.skill-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.58rem 0.95rem;
-  border: 1px solid #d0d5dd;
+.skills-filter-btn {
+  padding: 0.65rem 1.25rem;
+  border: 2px solid #d0d5dd;
   border-radius: 999px;
-  background: #f8fafc;
+  background: transparent;
   color: #344054;
   font-size: 0.95rem;
   font-weight: 500;
+  cursor: pointer;
   transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease;
+    all 0.2s ease;
 }
 
-.skill-pill:hover {
-  transform: translateY(-1px);
-  background: #f2f4f7;
-  border-color: #98a2b3;
+.skills-filter-btn:hover {
+  border-color: #101828;
   color: #101828;
 }
 
-.skill-pill-featured {
-  background: #111827;
-  border-color: #111827;
+.skills-filter-btn.is-active {
+  background: #101828;
+  border-color: #101828;
   color: #ffffff;
-  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.12);
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.2);
 }
 
-.skill-pill-featured:hover {
-  background: #0f172a;
-  border-color: #0f172a;
-  color: #ffffff;
+.skills-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 1.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: transparent;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  row-gap: 3rem;
+}
+
+.skills-cloud-item {
+  display: inline-block;
+  padding: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #101828;
+  font-weight: 400;
+  border: none;
+  cursor: default;
+  transition:
+    all 0.2s ease;
+  font-size: 1rem;
+}
+
+.skills-cloud-item:hover {
+  transform: scale(1.05);
+}
+
+/* Varying sizes for featured vs non-featured */
+.skills-cloud-item:nth-child(3n) {
+  font-size: 1.15rem;
+}
+
+.skills-cloud-item:nth-child(5n) {
+  font-size: 0.9rem;
+}
+
+.skills-cloud-item:nth-child(7n) {
+  font-size: 1.1rem;
+}
+
+.skills-cloud-item-featured {
+  font-weight: 700;
+  font-size: 1.25rem !important;
+  color: #101828;
+}
+
+.skills-cloud-item-featured:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1200px) {
+  .skills-cloud {
+    gap: 1.75rem 1.25rem;
+    padding: 3.5rem 1.5rem;
+    row-gap: 2.5rem;
+  }
+
+  .skills-cloud-item {
+    font-size: 0.95rem;
+  }
+
+  .skills-cloud-item:nth-child(3n) {
+    font-size: 1.1rem;
+  }
+
+  .skills-cloud-item-featured {
+    font-size: 1.15rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-filter {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .skills-filter-btn {
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .skills-cloud {
+    gap: 1.5rem 1rem;
+    padding: 2.5rem 1rem;
+    max-width: 600px;
+    row-gap: 2rem;
+  }
+
+  .skills-cloud-item {
+    font-size: 0.85rem;
+  }
+
+  .skills-cloud-item:nth-child(3n) {
+    font-size: 1rem;
+  }
+
+  .skills-cloud-item-featured {
+    font-size: 1.05rem !important;
+  }
 }
 
 /* =========================

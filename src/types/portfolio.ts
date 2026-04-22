@@ -1,6 +1,15 @@
+export type SkillCategory =
+  | 'languages'
+  | 'frameworks'
+  | 'databases'
+  | 'tools'
+  | 'lowcode'
+  | 'practices'
+
 export type Skill = {
   name: string
   featured?: boolean
+  category?: SkillCategory
 }
 
 export type SkillGroup = {

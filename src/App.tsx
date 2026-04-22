@@ -1,6 +1,6 @@
 import './App.css'
 import { useEffect, useMemo, useState } from 'react'
-import type { Project } from './types/portfolio'
+import type { Project, SkillCategory } from './types/portfolio'
 import {
   activities,
   contactItems,
@@ -17,6 +17,7 @@ function App() {
   const [activeActivityIndex, setActiveActivityIndex] = useState(0)
   const [copiedField, setCopiedField] = useState<string | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [skillsCategory, setSkillsCategory] = useState<SkillCategory | 'all'>('all')
 
   const firstEducation = education[0]
   const featuredExperience = experiences[0]
@@ -31,6 +32,13 @@ function App() {
     () => projects.filter((project) => project.title !== featuredProject.title),
     [featuredProject],
   )
+
+  const filteredSkills = useMemo(() => {
+    const allSkills = skillGroups.flatMap((group) => group.skills)
+    return skillsCategory === 'all'
+      ? allSkills
+      : allSkills.filter((skill) => skill.category === skillsCategory)
+  }, [skillsCategory])
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>(
@@ -204,31 +212,75 @@ function App() {
             </p>
           </div>
 
-          <div className="skills-group reveal reveal-delay-1">
-            {skillGroups.map((group) => (
-              <article
-                key={group.title}
-                className={`skills-group-card ${
-                  group.featured ? 'skills-group-card-featured' : ''
+          <div className="skills-filter reveal reveal-delay-1">
+            <button
+              className={`skills-filter-btn ${
+                skillsCategory === 'all' ? 'is-active' : ''
+              }`}
+              onClick={() => setSkillsCategory('all')}
+            >
+              All
+            </button>
+            <button
+              className={`skills-filter-btn ${
+                skillsCategory === 'languages' ? 'is-active' : ''
+              }`}
+              onClick={() => setSkillsCategory('languages')}
+            >
+              Languages
+            </button>
+            <button
+              className={`skills-filter-btn ${
+                skillsCategory === 'frameworks' ? 'is-active' : ''
+              }`}
+              onClick={() => setSkillsCategory('frameworks')}
+            >
+              Frameworks & APIs
+            </button>
+            <button
+              className={`skills-filter-btn ${
+                skillsCategory === 'databases' ? 'is-active' : ''
+              }`}
+              onClick={() => setSkillsCategory('databases')}
+            >
+              Databases
+            </button>
+            <button
+              className={`skills-filter-btn ${
+                skillsCategory === 'tools' ? 'is-active' : ''
+              }`}
+              onClick={() => setSkillsCategory('tools')}
+            >
+              Tools & Platforms
+            </button>
+            <button
+              className={`skills-filter-btn ${
+                skillsCategory === 'lowcode' ? 'is-active' : ''
+              }`}
+              onClick={() => setSkillsCategory('lowcode')}
+            >
+              Low-Code & Automation
+            </button>
+            <button
+              className={`skills-filter-btn ${
+                skillsCategory === 'practices' ? 'is-active' : ''
+              }`}
+              onClick={() => setSkillsCategory('practices')}
+            >
+              Practices & Methods
+            </button>
+          </div>
+
+          <div className="skills-cloud reveal reveal-delay-1">
+            {filteredSkills.map((skill) => (
+              <span
+                key={skill.name}
+                className={`skills-cloud-item ${
+                  skill.featured ? 'skills-cloud-item-featured' : ''
                 }`}
               >
-                <div className="skills-group-top">
-                  <h3>{group.title}</h3>
-                </div>
-
-                <div className="skills-grid">
-                  {group.skills.map((skill) => (
-                    <span
-                      key={skill.name}
-                      className={`skill-pill ${
-                        skill.featured ? 'skill-pill-featured' : ''
-                      }`}
-                    >
-                      {skill.name}
-                    </span>
-                  ))}
-                </div>
-              </article>
+                {skill.name}
+              </span>
             ))}
           </div>
         </section>
@@ -397,7 +449,7 @@ function App() {
             </div>
           )}
         </section>
-
+        
         {selectedProject && (
           <div className="project-modal-overlay" onClick={closeProjectModal}>
             <div
