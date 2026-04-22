@@ -34,6 +34,14 @@ body {
   background:
     radial-gradient(circle at top left, rgba(148, 163, 184, 0.12), transparent 24%),
     linear-gradient(180deg, #f8fafc 0%, #f5f7fa 100%);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+body.theme-dark {
+  color: #e5e7eb;
+  background:
+    radial-gradient(circle at top left, rgba(79, 70, 229, 0.14), transparent 24%),
+    linear-gradient(180deg, #020617 0%, #0f172a 100%);
 }
 
 a {

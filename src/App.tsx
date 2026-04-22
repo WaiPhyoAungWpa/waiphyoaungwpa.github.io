@@ -10,7 +10,35 @@ import {
   skillGroups,
 } from './data/portfolioData'
 
+const THEME_STORAGE_KEY = 'portfolio-theme'
+
+const getYouTubeEmbedUrl = (videoUrl: string) => {
+  try {
+    const parsedUrl = new URL(videoUrl)
+    const host = parsedUrl.hostname.replace('www.', '')
+    let videoId = ''
+
+    if (host === 'youtu.be') {
+      videoId = parsedUrl.pathname.slice(1)
+    } else if (host === 'youtube.com' || host === 'm.youtube.com') {
+      if (parsedUrl.pathname === '/watch') {
+        videoId = parsedUrl.searchParams.get('v') ?? ''
+      } else if (parsedUrl.pathname.startsWith('/shorts/')) {
+        videoId = parsedUrl.pathname.split('/')[2] ?? ''
+      } else if (parsedUrl.pathname.startsWith('/embed/')) {
+        videoId = parsedUrl.pathname.split('/')[2] ?? ''
+      }
+    }
+
+    if (!videoId) return null
+    return `https://www.youtube.com/embed/${videoId}?rel=0`
+  } catch {
+    return null
+  }
+}
+
 function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [showAllEducation, setShowAllEducation] = useState(false)
   const [showAllProjects, setShowAllProjects] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
@@ -31,6 +59,25 @@ function App() {
     () => projects.filter((project) => project.title !== featuredProject.title),
     [featuredProject],
   )
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY)
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      setTheme(savedTheme)
+      return
+    }
+
+    const prefersDarkMode = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches
+    setTheme(prefersDarkMode ? 'dark' : 'light')
+  }, [])
+
+  useEffect(() => {
+    document.body.classList.remove('theme-light', 'theme-dark')
+    document.body.classList.add(`theme-${theme}`)
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+  }, [theme])
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>(
@@ -61,6 +108,12 @@ function App() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
   const openProjectModal = (project: Project) => setSelectedProject(project)
   const closeProjectModal = () => setSelectedProject(null)
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))
+  }
+  const selectedProjectVideoEmbedUrl = selectedProject?.videoUrl
+    ? getYouTubeEmbedUrl(selectedProject.videoUrl)
+    : null
 
   const nextActivity = () => {
     setActiveActivityIndex((prev) => (prev + 1) % activities.length)
@@ -93,38 +146,63 @@ function App() {
             Wai Phyo Aung
           </a>
 
-          <button
-            className={`menu-toggle ${isMobileMenuOpen ? 'is-open' : ''}`}
-            type="button"
-            aria-label="Toggle navigation menu"
-            aria-expanded={isMobileMenuOpen}
-            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+          <div className="topbar-controls">
+            <nav className={`nav-links ${isMobileMenuOpen ? 'is-open' : ''}`}>
+              <a className="nav-item nav-delay-1" href="#about" onClick={closeMobileMenu}>
+                About
+              </a>
+              <a className="nav-item nav-delay-2" href="#experience" onClick={closeMobileMenu}>
+                Experience
+              </a>
+              <a className="nav-item nav-delay-3" href="#projects" onClick={closeMobileMenu}>
+                Projects
+              </a>
+              <a className="nav-item nav-delay-4" href="#education" onClick={closeMobileMenu}>
+                Education
+              </a>
+              <a className="nav-item nav-delay-5" href="#activities" onClick={closeMobileMenu}>
+                Activities
+              </a>
+              <a className="nav-item nav-delay-6" href="#contact" onClick={closeMobileMenu}>
+                Contact
+              </a>
+            </nav>
 
-          <nav className={`nav-links ${isMobileMenuOpen ? 'is-open' : ''}`}>
-            <a className="nav-item nav-delay-1" href="#about" onClick={closeMobileMenu}>
-              About
-            </a>
-            <a className="nav-item nav-delay-2" href="#experience" onClick={closeMobileMenu}>
-              Experience
-            </a>
-            <a className="nav-item nav-delay-3" href="#projects" onClick={closeMobileMenu}>
-              Projects
-            </a>
-            <a className="nav-item nav-delay-4" href="#education" onClick={closeMobileMenu}>
-              Education
-            </a>
-            <a className="nav-item nav-delay-5" href="#activities" onClick={closeMobileMenu}>
-              Activities
-            </a>
-            <a className="nav-item nav-delay-6" href="#contact" onClick={closeMobileMenu}>
-              Contact
-            </a>
-          </nav>
+            <button
+              className="theme-toggle"
+              type="button"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            >
+              <span className="theme-toggle-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="theme-toggle-svg"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
+                  <path
+                    d="M12 4a8 8 0 0 1 0 16Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </button>
+
+            <button
+              className={`menu-toggle ${isMobileMenuOpen ? 'is-open' : ''}`}
+              type="button"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -453,14 +531,22 @@ function App() {
               <div className="project-modal-section">
                 <h4>Video demo</h4>
                 {selectedProject.videoUrl ? (
-                  <a
-                    className="button secondary project-modal-video"
-                    href={selectedProject.videoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {'>> Watch demo'}
-                  </a>
+                  <div className="project-modal-video">
+                    {selectedProjectVideoEmbedUrl ? (
+                      <div className="project-modal-video-preview">
+                        <iframe
+                          src={selectedProjectVideoEmbedUrl}
+                          title={`${selectedProject.title} demo video`}
+                          loading="lazy"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                        />
+                      </div>
+                    ) : (
+                      <p>Video link is available, but preview is not supported.</p>
+                    )}
+                  </div>
                 ) : (
                   <p>No demo video available for this project yet.</p>
                 )}
