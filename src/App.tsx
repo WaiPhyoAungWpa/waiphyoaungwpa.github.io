@@ -654,7 +654,7 @@ function App() {
 
             <div
               className="activities-carousel surface"
-              onClick={(e) => {
+              onClick={() => {
                 if (window.innerWidth < 1024) {
                   nextActivity()
                 }
