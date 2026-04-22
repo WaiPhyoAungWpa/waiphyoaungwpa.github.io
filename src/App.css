@@ -1515,7 +1515,7 @@ body.theme-dark .footer {
   }
 }
 
-/* Mobile: Hide side arrows, enable tap-to-flip on card */
+/* Mobile: Hide side arrows, enable swipe-to-navigate on card */
 @media (max-width: 1023px) {
   .activities-carousel-wrapper {
     gap: 1rem;
@@ -1527,8 +1527,14 @@ body.theme-dark .footer {
   }
 
   .activities-carousel {
-    cursor: pointer;
-    touch-action: manipulation;
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .activities-carousel:active {
+    cursor: grabbing;
   }
 
   .activities-carousel-inner {

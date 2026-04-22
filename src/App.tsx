@@ -46,6 +46,7 @@ function App() {
   const [copiedField, setCopiedField] = useState<string | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activityFlipKey, setActivityFlipKey] = useState(0)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
 
   const firstEducation = education[0]
   const featuredExperience = experiences[0]
@@ -115,6 +116,28 @@ function App() {
   const selectedProjectVideoEmbedUrl = selectedProject?.videoUrl
     ? getYouTubeEmbedUrl(selectedProject.videoUrl)
     : null
+
+  const handleActivityTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX)
+  }
+
+  const handleActivityTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart) return
+
+    const touchEnd = e.changedTouches[0].clientX
+    const difference = touchStart - touchEnd
+    const threshold = 50
+
+    if (Math.abs(difference) > threshold) {
+      if (difference > 0) {
+        nextActivity()
+      } else {
+        prevActivity()
+      }
+    }
+
+    setTouchStart(null)
+  }
 
   const nextActivity = () => {
     setActivityFlipKey((prev) => prev + 1)
@@ -654,11 +677,8 @@ function App() {
 
             <div
               className="activities-carousel surface"
-              onClick={() => {
-                if (window.innerWidth < 1024) {
-                  nextActivity()
-                }
-              }}
+              onTouchStart={handleActivityTouchStart}
+              onTouchEnd={handleActivityTouchEnd}
             >
               <div className="activities-carousel-inner" key={activityFlipKey}>
                 <div className="activities-carousel-media">
