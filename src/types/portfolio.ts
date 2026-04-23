@@ -1,55 +1,61 @@
+type TranslatedText = {
+  en: string
+  zh: string
+}
+
 export type Skill = {
   name: string
   featured?: boolean
 }
 
 export type SkillGroup = {
-  title: string
+  title: TranslatedText
   featured?: boolean
   skills: Skill[]
 }
 
 export type Experience = {
   company: string
-  role: string
+  role: TranslatedText
   location: string
   period: string
-  type: string
-  summary: string
+  type: TranslatedText
+  summary: TranslatedText
   image: string
   imageAlt: string
-  details: string[]
+  details: TranslatedText[]
   tools: string[]
 }
 
 export type Project = {
-  title: string
+  title: TranslatedText
   period: string
-  type: string
-  description: string
+  type: TranslatedText
+  description: TranslatedText
   stack: string[]
   image: string
   featured?: boolean
-  details: string[]
+  details: TranslatedText[]
   photos: string[]
   videoUrl?: string
 }
 
 export type EducationItem = {
   school: string
-  qualification: string
+  qualification: TranslatedText
   period: string
-  details: string[]
+  details: TranslatedText[]
 }
 
 export type Activity = {
-  title: string
-  description: string
+  title: TranslatedText
+  description: TranslatedText
+  period: string
   image?: string
 }
 
 export type ContactItem = {
-  label: string
+  label: TranslatedText
   value: string
   href: string
 }

@@ -47,6 +47,7 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activityFlipKey, setActivityFlipKey] = useState(0)
   const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [lang, setLang] = useState<'en' | 'zh'>('en')
 
   const firstEducation = education[0]
   const featuredExperience = experiences[0]
@@ -175,22 +176,27 @@ function App() {
           <div className="topbar-controls">
             <nav className={`nav-links ${isMobileMenuOpen ? 'is-open' : ''}`}>
               <a className="nav-item nav-delay-1" href="#about" onClick={closeMobileMenu}>
-                About
+                {lang === 'en' ? 'About' : '关于'}
               </a>
+
               <a className="nav-item nav-delay-2" href="#experience" onClick={closeMobileMenu}>
-                Experience
+                {lang === 'en' ? 'Experience' : '经历'}
               </a>
+
               <a className="nav-item nav-delay-3" href="#projects" onClick={closeMobileMenu}>
-                Projects
+                {lang === 'en' ? 'Projects' : '项目'}
               </a>
+
               <a className="nav-item nav-delay-4" href="#education" onClick={closeMobileMenu}>
-                Education
+                {lang === 'en' ? 'Education' : '教育'}
               </a>
+
               <a className="nav-item nav-delay-5" href="#activities" onClick={closeMobileMenu}>
-                Activities
+                {lang === 'en' ? 'Activities' : '活动'}
               </a>
+
               <a className="nav-item nav-delay-6" href="#contact" onClick={closeMobileMenu}>
-                Contact
+                {lang === 'en' ? 'Contact' : '联系'}
               </a>
             </nav>
 
@@ -198,8 +204,16 @@ function App() {
               className="theme-toggle"
               type="button"
               onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              aria-label={
+                lang === 'en'
+                  ? `Switch to ${theme === 'light' ? 'dark' : 'light'} mode`
+                  : `切换到${theme === 'light' ? '深色' : '浅色'}模式`
+              }
+              title={
+                lang === 'en'
+                  ? `Switch to ${theme === 'light' ? 'dark' : 'light'} mode`
+                  : `切换到${theme === 'light' ? '深色' : '浅色'}模式`
+              }
             >
               <span className="theme-toggle-icon" aria-hidden="true">
                 <svg
@@ -209,9 +223,74 @@ function App() {
                   aria-hidden="true"
                 >
                   <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
+                  <path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" />
+                </svg>
+              </span>
+            </button>
+
+            <button
+              className="theme-toggle"
+              type="button"
+              onClick={() => setLang(lang === 'en' ? 'zh' : 'en')}
+              aria-label={lang === 'en' ? 'Switch to Chinese' : '切换到英文'}
+              title={lang === 'en' ? '中文' : 'English'}
+            >
+              <span className="theme-toggle-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="theme-toggle-svg">
+                  {/* Top left box */}
+                  <rect
+                    x="3"
+                    y="3"
+                    width="8"
+                    height="8"
+                    rx="1.5"
+                    fill="var(--icon-fill)"
+                  />
+                  <text
+                    x="7"
+                    y="9"
+                    textAnchor="middle"
+                    fontSize="6"
+                    fill="var(--icon-text)"
+                    fontWeight="700"
+                  >
+                    文
+                  </text>
+
+                  {/* Bottom right box */}
+                  <rect
+                    x="13"
+                    y="13"
+                    width="8"
+                    height="8"
+                    rx="1.5"
+                    fill="var(--icon-fill)"
+                  />
+                  <text
+                    x="17"
+                    y="19"
+                    textAnchor="middle"
+                    fontSize="6"
+                    fill="var(--icon-text)"
+                    fontWeight="700"
+                  >
+                    A
+                  </text>
+
+                  {/* Arrows */}
                   <path
-                    d="M12 4a8 8 0 0 1 0 16Z"
-                    fill="currentColor"
+                    d="M8 14C6 14 5 13 5 11"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                  <path
+                    d="M16 10C18 10 19 11 19 13"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    fill="none"
                   />
                 </svg>
               </span>
@@ -220,7 +299,9 @@ function App() {
             <button
               className={`menu-toggle ${isMobileMenuOpen ? 'is-open' : ''}`}
               type="button"
-              aria-label="Toggle navigation menu"
+              aria-label={
+                lang === 'en' ? 'Toggle navigation menu' : '切换导航菜单'
+              }
               aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             >
@@ -235,22 +316,28 @@ function App() {
       <main className="container">
         <section id="home" className="hero section">
           <div className="hero-copy reveal">
-            <p className="eyebrow">Aspiring Software Engineer</p>
-            <h1>Turning ideas into structured digital products.</h1>
+            <p className="eyebrow">
+              {lang === 'en' ? 'Aspiring Software Engineer' : '软件工程师求职者'}
+            </p>
+
+            <h1>
+              {lang === 'en'
+                ? 'Turning ideas into structured digital products.'
+                : '将想法转化为结构化的数字产品'}
+            </h1>
+
             <p className="hero-text">
-              I am a graduating Information Technology student from Singapore
-              Polytechnic specializing in Software Development, with a minor in
-              5G and Artificial Intelligence of Things (AIoT). I enjoy building
-              practical software, learn quickly and enjoy turning ideas into
-              practical solutions.
+              {lang === 'en'
+                ? 'I am a graduating Information Technology student from Singapore Polytechnic specializing in Software Development, with a minor in 5G and Artificial Intelligence of Things (AIoT). I enjoy building practical software, learn quickly and enjoy turning ideas into practical solutions.'
+                : '我是一名即将毕业的新加坡理工学院信息技术专业学生，主修软件开发，并辅修5G与人工智能物联网 (AIoT)。我热衷于构建实用的软件，学习能力强，并喜欢将想法转化为实际解决方案。'}
             </p>
 
             <div className="hero-actions">
               <a className="button primary" href="#projects">
-                View Projects
+                {lang === 'en' ? 'View Projects' : '查看项目'}
               </a>
               <a className="button secondary" href="#contact">
-                Contact
+                {lang === 'en' ? 'Contact' : '联系'}
               </a>
             </div>
           </div>
@@ -266,7 +353,7 @@ function App() {
               <div className="hero-photo-frame">
                 <img
                   src={`images/profile.jpeg`}
-                  alt="Profile portrait"
+                  alt={lang === 'en' ? 'Profile portrait' : '个人头像'}
                   className="hero-photo"
                 />
               </div>
@@ -276,48 +363,61 @@ function App() {
 
         <section id="about" className="section two-column divider-top">
           <div className="reveal">
-            <p className="section-tag">About</p>
-            <h2>Building practical solutions with real-world exposure.</h2>
+            <p className="section-tag">
+              {lang === 'en' ? 'About' : '关于'}
+            </p>
+
+            <h2>
+              {lang === 'en'
+                ? 'Building practical solutions with real-world exposure.'
+                : '结合真实经验构建实用解决方案'}
+            </h2>
           </div>
 
           <div className="flow-text reveal reveal-delay-1">
             <p>
-              I combine academic software engineering experience with real-world
-              exposure through the Industry Now Curriculum (Project INC)
-              pathway, where I contributed to a client-based ERP web application
-              for a local spa business, and my internship at Mediacorp’s
-              Enterprise Apps team, where I focused on automation solutions.
+              {lang === 'en'
+                ? 'I combine academic software engineering experience with real-world exposure through the Industry Now Curriculum (Project INC) pathway, where I contributed to a client-based ERP (Enterprise Resource Planning) web application for a local spa business, and my internship at Mediacorp\'s Enterprise Apps team, where I focused on automation solutions.'
+                : '我通过 Industry Now Curriculum (Project INC) 项目，将学术软件工程经验与真实项目实践相结合。在该项目中，我参与为本地水疗业务开发 ERP (企业资源计划) 系统，并在 Mediacorp 企业应用团队实习期间，专注于自动化解决方案。'}
             </p>
+
             <p>
-              I am continuously developing my skills and aim to build meaningful
-              digital solutions across code-based and low-code platforms,
-              including automation workflows and AI-enhanced solutions, with a
-              focus on improving processes, enhancing user experiences and
-              delivering practical impact.
+              {lang === 'en'
+                ? 'I am continuously developing my skills and aim to build meaningful digital solutions across code-based and low-code platforms, including automation workflows and AI-enhanced solutions, with a focus on improving processes, enhancing user experiences and delivering practical impact.'
+                : '我持续提升自身技能，致力于在代码开发与低代码平台上构建有意义的数字解决方案，包括自动化流程与 AI 增强应用，重点在于优化流程，提升用户体验并带来实际价值。'}
             </p>
           </div>
         </section>
 
         <section className="section">
           <div className="section-heading reveal">
-            <p className="section-tag">Skills</p>
-            <h2>Tools and technologies</h2>
+            <p className="section-tag">
+              {lang === 'en' ? 'Skills' : '技能'}
+            </p>
+
+            <h2>
+              {lang === 'en'
+                ? 'Tools and technologies'
+                : '工具与技术'}
+            </h2>
+
             <p className="section-intro">
-              Core technical stack across software engineering, databases,
-              automation and low-code development.
+              {lang === 'en'
+                ? 'Core technical stack across software engineering, databases, automation and low-code development.'
+                : '涵盖软件工程，数据库，自动化以及低代码开发的核心技术栈。'}
             </p>
           </div>
 
           <div className="skills-group reveal reveal-delay-1">
             {skillGroups.map((group) => (
               <article
-                key={group.title}
+                key={group.title[lang]}
                 className={`skills-group-card ${
                   group.featured ? 'skills-group-card-featured' : ''
                 }`}
               >
                 <div className="skills-group-top">
-                  <h3>{group.title}</h3>
+                  <h3>{group.title[lang]}</h3>
                 </div>
 
                 <div className="skills-grid">
@@ -339,8 +439,14 @@ function App() {
 
         <section id="experience" className="section divider-top">
           <div className="section-heading reveal">
-            <p className="section-tag">Experience</p>
-            <h2>Internships and work experience</h2>
+            <p className="section-tag">
+              {lang === 'en' ? 'Experience' : '经历'}
+            </p>
+            <h2>
+              {lang === 'en'
+                ? 'Internships and work experience'
+                : '实习与工作经验'}
+            </h2>
           </div>
 
           <article className="experience-card surface reveal reveal-delay-1">
@@ -355,24 +461,33 @@ function App() {
             <div className="experience-content">
               <div className="experience-top">
                 <div>
-                  <p className="section-tag">Latest Experience</p>
-                  <h3>{featuredExperience.role}</h3>
+                  <p className="section-tag">
+                    {lang === 'en' ? 'Latest Experience' : '最新经历'}
+                  </p>
+
+                  <h3>{featuredExperience.role[lang]}</h3>
+
                   <p className="experience-company">
                     {featuredExperience.company} · {featuredExperience.location}
                   </p>
-                  <p className="meta-line">{featuredExperience.period}</p>
+
+                  <p className="meta-line">
+                    {featuredExperience.period}
+                  </p>
                 </div>
 
                 <span className="badge badge-accent">
-                  {featuredExperience.type}
+                  {featuredExperience.type[lang]}
                 </span>
               </div>
 
-              <p className="body-copy">{featuredExperience.summary}</p>
+              <p className="body-copy">
+                {featuredExperience.summary[lang]}
+              </p>
 
               <ul className="experience-highlight-list">
-                {featuredExperience.details.map((detail) => (
-                  <li key={detail}>{detail}</li>
+                {featuredExperience.details.map((detail, i) => (
+                  <li key={i}>{detail[lang]}</li>
                 ))}
               </ul>
 
@@ -389,8 +504,14 @@ function App() {
 
         <section id="projects" className="section divider-top">
           <div className="section-heading reveal">
-            <p className="section-tag">Projects</p>
-            <h2>Selected work and technical builds</h2>
+            <p className="section-tag">
+              {lang === 'en' ? 'Projects' : '项目'}
+            </p>
+            <h2>
+              {lang === 'en'
+                ? 'Selected work and technical builds'
+                : '精选项目与技术实践'}
+            </h2>
           </div>
 
           <article
@@ -407,20 +528,22 @@ function App() {
             <div className="project-featured-media">
               <img
                 src={featuredProject.image}
-                alt={featuredProject.title}
+                alt={featuredProject.title[lang]}
                 className="project-featured-image"
               />
             </div>
 
             <div className="project-featured-content">
               <div className="project-featured-meta">
-                <span className="badge badge-accent">Featured Project</span>
+                <span className="badge badge-accent">
+                  {lang === 'en' ? 'Featured Project' : '精选项目'}
+                </span>
                 <p className="project-period">{featuredProject.period}</p>
               </div>
 
-              <h3>{featuredProject.title}</h3>
-              <p className="project-type">{featuredProject.type}</p>
-              <p className="body-copy">{featuredProject.description}</p>
+              <h3>{featuredProject.title[lang]}</h3>
+              <p className="project-type">{featuredProject.type[lang]}</p> 
+              <p className="body-copy">{featuredProject.description[lang]}</p>
 
               <div className="tag-row">
                 {featuredProject.stack.map((tag) => (
@@ -439,7 +562,7 @@ function App() {
                 onClick={() => setShowAllProjects(true)}
                 type="button"
               >
-                View all projects
+                {lang === 'en' ? 'View all projects' : '查看所有项目'}
                 <span className="toggle-icon">▼</span>
               </button>
             </div>
@@ -448,7 +571,7 @@ function App() {
               <div className="project-grid-showcase">
                 {otherProjects.map((project, index) => (
                   <article
-                    key={project.title}
+                    key={project.title.en}
                     className={`project-showcase-card surface reveal ${
                       index % 2 === 0 ? 'reveal-delay-1' : 'reveal-delay-2'
                     }`}
@@ -464,7 +587,7 @@ function App() {
                     <div className="project-card-media">
                       <img
                         src={project.image}
-                        alt={project.title}
+                        alt={project.title[lang]}
                         className="project-card-image"
                       />
                     </div>
@@ -472,11 +595,13 @@ function App() {
                     <div className="project-card-body">
                       <div className="project-card-top">
                         <p className="project-period">{project.period}</p>
-                        <span className="project-card-badge">{project.type}</span>
+                        <span className="project-card-badge">
+                          {project.type[lang]}
+                        </span>
                       </div>
 
-                      <h3>{project.title}</h3>
-                      <p className="body-copy">{project.description}</p>
+                      <h3>{project.title[lang]}</h3>
+                      <p className="body-copy">{project.description[lang]}</p>
 
                       <div className="tag-row">
                         {project.stack.map((tag) => (
@@ -496,7 +621,7 @@ function App() {
                   onClick={() => setShowAllProjects(false)}
                   type="button"
                 >
-                  Hide other projects
+                  {lang === 'en' ? 'Hide other projects' : '收起项目'}
                   <span className="toggle-icon">▲</span>
                 </button>
               </div>
@@ -512,8 +637,10 @@ function App() {
             >
               <div className="project-modal-header">
                 <div>
-                  <p className="section-tag">Project details</p>
-                  <h3>{selectedProject.title}</h3>
+                  <p className="section-tag">
+                    {lang === 'en' ? 'Project details' : '项目详情'}
+                  </p>
+                  <h3>{selectedProject.title[lang]}</h3>
                 </div>
                 <button
                   className="button secondary project-modal-close"
@@ -527,44 +654,49 @@ function App() {
 
               <div className="project-modal-meta">
                 <span className="project-period">{selectedProject.period}</span>
-                <span className="project-card-badge">{selectedProject.type}</span>
+                <span className="project-card-badge">
+                  {selectedProject.type[lang]}
+                </span>
               </div>
 
               <p className="body-copy project-description">
-                {selectedProject.description}
+                {selectedProject.description[lang]}
               </p>
 
               <div className="project-modal-section">
-                <h4>Detailed overview</h4>
+                <h4>
+                  {lang === 'en' ? 'Detailed overview' : '详细说明'}
+                </h4>
                 <ul>
-                  {selectedProject.details.map((detail) => (
-                    <li key={detail}>{detail}</li>
+                  {selectedProject.details.map((detail, i) => (
+                    <li key={i}>{detail[lang]}</li>
                   ))}
                 </ul>
               </div>
 
               <div className="project-modal-section">
-                <h4>Photos</h4>
+                <h4>{lang === 'en' ? 'Photos' : '图片'}</h4>
                 <div className="project-modal-photos">
                   {selectedProject.photos.map((photo) => (
                     <img
                       key={photo}
                       src={photo}
-                      alt={`${selectedProject.title} screenshot`}
+                      alt={`${selectedProject.title[lang]} screenshot`}
                     />
                   ))}
                 </div>
               </div>
 
               <div className="project-modal-section">
-                <h4>Video demo</h4>
+                <h4>{lang === 'en' ? 'Video demo' : '演示视频'}</h4>
+
                 {selectedProject.videoUrl ? (
                   <div className="project-modal-video">
                     {selectedProjectVideoEmbedUrl ? (
                       <div className="project-modal-video-preview">
                         <iframe
                           src={selectedProjectVideoEmbedUrl}
-                          title={`${selectedProject.title} demo video`}
+                          title={`${selectedProject.title[lang]} demo video`}
                           loading="lazy"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           referrerPolicy="strict-origin-when-cross-origin"
@@ -572,11 +704,19 @@ function App() {
                         />
                       </div>
                     ) : (
-                      <p>Video link is available, but preview is not supported.</p>
+                      <p>
+                        {lang === 'en'
+                          ? 'Video link is available, but preview is not supported.'
+                          : '视频链接存在，但无法预览。'}
+                      </p>
                     )}
                   </div>
                 ) : (
-                  <p>No demo video available for this project yet.</p>
+                  <p>
+                    {lang === 'en'
+                      ? 'No demo video available for this project yet.'
+                      : '暂无演示视频'}
+                  </p>
                 )}
               </div>
             </div>
@@ -585,8 +725,14 @@ function App() {
 
         <section id="education" className="section divider-top">
           <div className="section-heading reveal">
-            <p className="section-tag">Education</p>
-            <h2>Academic background</h2>
+            <p className="section-tag">
+              {lang === 'en' ? 'Education' : '教育'}
+            </p>
+            <h2>
+              {lang === 'en'
+                ? 'Academic background'
+                : '教育背景'}
+            </h2>
           </div>
 
           {!showAllEducation ? (
@@ -600,11 +746,11 @@ function App() {
 
                 <div className="education-preview-card surface reveal reveal-delay-2">
                   <p className="education-preview-course">
-                    {firstEducation.qualification}
+                    {firstEducation.qualification[lang]}
                   </p>
 
-                  {firstEducation.details.map((detail) => (
-                    <p key={detail}>{detail}</p>
+                  {firstEducation.details.map((detail,i) => (
+                    <p key={i}>{detail[lang]}</p>
                   ))}
                 </div>
               </div>
@@ -635,11 +781,11 @@ function App() {
                     }`}
                   >
                     <h3>{item.school}</h3>
-                    <p>{item.qualification}</p>
+                    <p>{item.qualification[lang]}</p>
                     <p className="meta-line">{item.period}</p>
 
-                    {item.details.map((detail) => (
-                      <p key={detail}>{detail}</p>
+                    {item.details.map((detail, i) => (
+                      <p key={i}>{detail[lang]}</p>
                     ))}
                   </article>
                 ))}
@@ -661,8 +807,14 @@ function App() {
 
         <section id="activities" className="section divider-top">
           <div className="section-heading reveal">
-            <p className="section-tag">Activities</p>
-            <h2>Beyond academics and projects</h2>
+            <p className="section-tag">
+              {lang === 'en' ? 'Activities' : '活动'}
+            </p>
+            <h2>
+              {lang === 'en'
+                ? 'Beyond academics and projects'
+                : '课外活动与实践'}
+            </h2>
           </div>
 
           <div className="activities-carousel-wrapper reveal reveal-delay-1">
@@ -685,7 +837,7 @@ function App() {
                   {activeActivity.image ? (
                     <img
                       src={activeActivity.image}
-                      alt={activeActivity.title}
+                      alt={activeActivity.title[lang]}
                       className="activities-carousel-image"
                     />
                   ) : (
@@ -699,19 +851,20 @@ function App() {
                   <p className="project-period">
                     {activeActivityIndex + 1} / {activities.length}
                   </p>
-                  <h3>{activeActivity.title}</h3>
-                  <p>{activeActivity.description}</p>
+                  <h3>{activeActivity.title[lang]}</h3>
+                  <p className="meta-line">{activeActivity.period}</p>
+                  <p>{activeActivity.description[lang]}</p>
 
                   <div className="activities-carousel-dots">
                     {activities.map((activity, index) => (
                       <button
-                        key={activity.title}
+                        key={activity.title[lang]}
                         type="button"
                         className={`carousel-dot ${
                           index === activeActivityIndex ? 'is-active' : ''
                         }`}
                         onClick={() => setActiveActivityIndex(index)}
-                        aria-label={`View ${activity.title}`}
+                        aria-label={`View ${activity.title[lang]}`}
                       />
                     ))}
                   </div>
@@ -733,23 +886,28 @@ function App() {
         <section id="contact" className="section divider-top">
           <div className="contact-shell">
             <div className="contact-copy reveal">
-              <p className="section-tag">Contact</p>
-              <h2>Let’s connect.</h2>
+              <p className="section-tag">
+                {lang === 'en' ? 'Contact' : '联系方式'}
+              </p>
+              <h2>
+                {lang === 'en' ? "Let's connect." : '欢迎联系我'}
+              </h2>
               <p className="flow-copy">
-                Feel free to reach out for internship, graduate opportunities,
-                collaborations, or professional networking.
+                {lang === 'en'
+                  ? 'Feel free to reach out for internships, graduate opportunities, collaborations or professional networking.'
+                  : '欢迎联系我以获取实习机会，毕业生岗位，合作机会或职业交流。'}
               </p>
             </div>
 
             <div className="contact-card surface reveal reveal-delay-1">
               {contactItems.map((item) => (
-                <div key={item.label} className="contact-item">
+                <div key={item.label[lang]} className="contact-item">
                   <div className="contact-item-copy">
-                    <p className="contact-label">{item.label}</p>
+                    <p className="contact-label">{item.label[lang]}</p>
                     <a
                       href={item.href}
-                      target={item.label === 'LinkedIn' ? '_blank' : undefined}
-                      rel={item.label === 'LinkedIn' ? 'noreferrer' : undefined}
+                      target={item.label[lang] === 'LinkedIn' ? '_blank' : undefined}
+                      rel={item.label[lang] === 'LinkedIn' ? 'noreferrer' : undefined}
                       className="contact-value"
                     >
                       {item.value}
@@ -759,11 +917,11 @@ function App() {
                   <button
                     type="button"
                     className={`contact-copy-button ${
-                      copiedField === item.label ? 'is-copied' : ''
+                      copiedField === item.label[lang] ? 'is-copied' : ''
                     }`}
-                    onClick={() => handleCopy(item.label, item.value)}
+                    onClick={() => handleCopy(item.label[lang], item.value)}
                   >
-                    {copiedField === item.label ? 'Copied' : 'Copy'}
+                    {copiedField === item.label[lang] ? 'Copied' : 'Copy'}
                   </button>
                 </div>
               ))}
@@ -775,7 +933,9 @@ function App() {
       <footer className="footer">
         <div className="container footer-inner">
           <p className="footer-copy">
-            © {new Date().getFullYear()} All rights reserved.
+            {lang === 'en'
+              ? `© ${new Date().getFullYear()} All rights reserved.`
+              : `© ${new Date().getFullYear()} 版权所有`}
           </p>
         </div>
       </footer>

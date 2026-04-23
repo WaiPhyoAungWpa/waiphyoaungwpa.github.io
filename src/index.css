@@ -14,6 +14,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --icon-fill: #1e293b;   /* dark box (light mode) */
+  --icon-text: #ffffff;   /* white text */
+}
+
+[data-theme='dark'] {
+  --icon-fill: #e2e8f0;   /* light box (dark mode) */
+  --icon-text: #020617;   /* dark text */
 }
 
 *,
