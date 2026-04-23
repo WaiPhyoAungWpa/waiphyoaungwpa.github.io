@@ -219,8 +219,8 @@ export const projects: Project[] = [
     image: `images/projects/cleaning.png`,
     details: [
       {
-        en: 'Implemented MVC architecture using JSP and Servlets, with DAO (Data Access Object) pattern for database interactions.',
-        zh: '使用 JSP 和 Servlet 实现 MVC 架构，采用 DAO (数据访问对象) 模式进行数据库交互。',
+        en: 'Implemented MVC (Model-View-Controller) architecture using JSP and Servlets, with DAO (Data Access Object) pattern for database interactions.',
+        zh: '使用 JSP 和 Servlet 实现 MVC (模型-视图-控制器) 架构，采用 DAO (数据访问对象) 模式进行数据库交互。',
       },
       {
         en: 'Developed RESTful APIs to support system integration, including use in a reseller platform.',
@@ -287,7 +287,7 @@ export const projects: Project[] = [
     image: `images/projects/iot.png`,
     details: [
       {
-        en: 'Conducted user and problem analysis and designed system architecture using block diagrams, data flows and flowcharts.',
+        en: 'Conducted user and problem analysis, and designed system architecture using block diagrams, data flows and flowcharts.',
         zh: '开展用户和问题分析，并使用框图，数据流图和流程图设计系统架构。',
       },
       {
