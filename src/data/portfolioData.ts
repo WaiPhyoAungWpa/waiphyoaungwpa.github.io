@@ -199,6 +199,7 @@ export const projects: Project[] = [
     ],
     photos: ['images/projects/erp.jpeg'],
     videoUrl: 'https://youtu.be/-BfXDBhM4xE',
+    instagramReelUrl: 'https://www.instagram.com/reel/DVP_5cIklfI/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ=='
   },
 
   {
@@ -231,7 +232,7 @@ export const projects: Project[] = [
         zh: '实现服务，预订和用户账户的 CRUD (增删查改) 功能，使用单独的 servlet 处理请求。',
       },
     ],
-    photos: ['images/projects/cleaning.png'],
+    photos: ['images/projects/cleaning.png', `images/projects/cleaning_erd.png`],
     videoUrl: 'https://youtu.be/y9yvpn0LxhA',
   },
 
@@ -265,7 +266,7 @@ export const projects: Project[] = [
         zh: '使用 Mendix 开发低代码原型（包括微流程，工作流和页面），结合 MySQL 进行数据管理，并利用 Node-RED 实现节能逻辑。',
       }
     ],
-    photos: ['images/projects/ecohome.png'],
+    photos: ['images/projects/ecohome.png', `images/projects/ecohome_flowchart.png`],
     videoUrl: 'https://youtube.com/shorts/i4BjQyweDMI',
   },
 
@@ -295,7 +296,7 @@ export const projects: Project[] = [
         zh: '使用 Raspberry Pi 和 Python 实现系统，包括定时喂食，Telegram 机器人控制以及用于食物水平监测和运动检测的传感器。',
       },
     ],
-    photos: ['images/projects/iot.png'],
+    photos: ['images/projects/iot.png', `images/projects/iot_flowchart.png`],
     videoUrl: 'https://youtu.be/SzOXgIkv4I0',
   },
 ]

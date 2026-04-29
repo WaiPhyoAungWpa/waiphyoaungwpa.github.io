@@ -37,6 +37,25 @@ const getYouTubeEmbedUrl = (videoUrl: string) => {
   }
 }
 
+const getInstagramEmbedUrl = (instagramUrl: string) => {
+  try {
+    const url = new URL(instagramUrl)
+    const pathParts = url.pathname.split('/').filter(Boolean)
+    
+    // Extract post ID from /p/{postId}/ or /reel/{postId}/
+    if (pathParts[0] === 'p' || pathParts[0] === 'reel') {
+      const postId = pathParts[1]
+      if (postId) {
+        return `https://www.instagram.com/${pathParts[0]}/${postId}/embed`
+      }
+    }
+    
+    return null
+  } catch {
+    return null
+  }
+}
+
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [showAllEducation, setShowAllEducation] = useState(false)
@@ -116,6 +135,10 @@ function App() {
   }
   const selectedProjectVideoEmbedUrl = selectedProject?.videoUrl
     ? getYouTubeEmbedUrl(selectedProject.videoUrl)
+    : null
+
+  const selectedProjectInstagramEmbedUrl = selectedProject?.instagramReelUrl
+    ? getInstagramEmbedUrl(selectedProject.instagramReelUrl)
     : null
 
   const handleActivityTouchStart = (e: React.TouchEvent) => {
@@ -690,9 +713,9 @@ function App() {
               <div className="project-modal-section">
                 <h4>{lang === 'en' ? 'Video demo' : '演示视频'}</h4>
 
-                {selectedProject.videoUrl ? (
+                {selectedProject.videoUrl || selectedProject.instagramReelUrl ? (
                   <div className="project-modal-video">
-                    {selectedProjectVideoEmbedUrl ? (
+                    {selectedProject.videoUrl && selectedProjectVideoEmbedUrl && (
                       <div className="project-modal-video-preview">
                         <iframe
                           src={selectedProjectVideoEmbedUrl}
@@ -703,13 +726,24 @@ function App() {
                           allowFullScreen
                         />
                       </div>
-                    ) : (
+                    )}
+                    {selectedProject.instagramReelUrl && selectedProjectInstagramEmbedUrl && (
+                      <div className="project-modal-video-preview">
+                        <iframe
+                          src={selectedProjectInstagramEmbedUrl}
+                          title={`${selectedProject.title[lang]} Instagram reel`}
+                          loading="lazy"
+                          allowFullScreen
+                        />
+                      </div>
+                    )}
+                    {(!selectedProjectVideoEmbedUrl && selectedProject.videoUrl) || (!selectedProjectInstagramEmbedUrl && selectedProject.instagramReelUrl) ? (
                       <p>
                         {lang === 'en'
                           ? 'Video link is available, but preview is not supported.'
                           : '视频链接存在，但无法预览。'}
                       </p>
-                    )}
+                    ) : null}
                   </div>
                 ) : (
                   <p>

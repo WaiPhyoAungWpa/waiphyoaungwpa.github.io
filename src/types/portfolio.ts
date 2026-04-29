@@ -38,6 +38,7 @@ export type Project = {
   details: TranslatedText[]
   photos: string[]
   videoUrl?: string
+  instagramReelUrl?: string
 }
 
 export type EducationItem = {
