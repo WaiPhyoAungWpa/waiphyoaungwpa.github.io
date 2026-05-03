@@ -23,6 +23,7 @@ export type Experience = {
   summary: TranslatedText
   image: string
   imageAlt: string
+  highlight?: TranslatedText
   details: TranslatedText[]
   tools: string[]
 }
@@ -45,7 +46,8 @@ export type EducationItem = {
   school: string
   qualification: TranslatedText
   period: string
-  details: TranslatedText[]
+  details?: TranslatedText[]
+  achievements?: TranslatedText[]
 }
 
 export type Activity = {

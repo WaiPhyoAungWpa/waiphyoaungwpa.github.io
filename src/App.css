@@ -614,10 +614,39 @@
   color: #344054;
 }
 
+.experience-main-project {
+  margin-top: 1.35rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid #d0d5dd;
+  border-left: 4px solid #111827;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.experience-main-project .section-tag {
+  margin-bottom: 0.55rem;
+}
+
+.experience-main-project p:not(.section-tag) {
+  margin: 0;
+  color: #101828;
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.experience-list-label {
+  margin-top: 1.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #667085;
+}
+
 .experience-highlight-list {
   display: grid;
   gap: 0.85rem;
-  margin: 1.35rem 0 0;
+  margin: 0.8rem 0 0;
   padding: 0;
   list-style: none;
 }
@@ -1274,6 +1303,20 @@ body.theme-dark .experience-image {
   background: #0f172a;
 }
 
+body.theme-dark .experience-main-project {
+  background: rgba(15, 23, 42, 0.78);
+  border-color: #475569;
+  border-left-color: #a5b4fc;
+}
+
+body.theme-dark .experience-main-project p:not(.section-tag) {
+  color: #f8fafc;
+}
+
+body.theme-dark .experience-list-label {
+  color: #9ca3af;
+}
+
 body.theme-dark .experience-highlight-list li::before {
   background: #a5b4fc;
 }
@@ -1298,6 +1341,27 @@ body.theme-dark .education-item::before {
 
 body.theme-dark .education-preview-card {
   border-left-color: #475569;
+}
+
+body.theme-dark .education-detail-group {
+  border-top-color: #334155;
+}
+
+body.theme-dark .education-achievement-group {
+  border-top-color: #475569;
+}
+
+body.theme-dark .education-detail-label,
+body.theme-dark .education-item .education-detail-label {
+  color: #9ca3af;
+}
+
+body.theme-dark .education-detail-group p {
+  color: #cbd5e1;
+}
+
+body.theme-dark .education-achievement-group p:not(.education-detail-label) {
+  color: #f8fafc;
 }
 
 body.theme-dark .activities-carousel-placeholder {
@@ -1366,6 +1430,37 @@ body.theme-dark .footer {
 
 .education-preview-card p + p {
   margin-top: 0.7rem;
+}
+
+.education-detail-group {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eaecf0;
+}
+
+.education-detail-group p {
+  margin-top: 0.62rem;
+  color: #475467;
+  line-height: 1.6;
+}
+
+.education-detail-label,
+.education-item .education-detail-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #667085;
+}
+
+.education-achievement-group {
+  border-top-color: #d0d5dd;
+}
+
+.education-achievement-group p:not(.education-detail-label) {
+  color: #344054;
+  font-weight: 600;
 }
 
 .education-timeline {

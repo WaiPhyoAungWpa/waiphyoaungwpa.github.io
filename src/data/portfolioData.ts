@@ -107,12 +107,12 @@ export const experiences: Experience[] = [
     },
     image: `images/experience/mediacorp-internship.jpeg`,
     imageAlt: 'Mediacorp Enterprise Apps internship',
+    highlight: {
+      en: 'Designed an approval workflow using Jira Automation and Microsoft Power Automate to support internal request approvals.',
+      zh: '使用 Jira Automation 和 Microsoft Power Automate 设计审批流程，以支持内部请求审批。',
+    },
 
     details: [
-      {
-        en: 'Designed an approval workflow using Jira Automation and Microsoft Power Automate.',
-        zh: '使用 Jira Automation 和 Microsoft Power Automate 设计审批流程。',
-      },
       {
         en: 'Developed a .NET console application for backend batch jobs.',
         zh: '开发用于后端批处理任务的 .NET 控制台应用程序。',
@@ -322,6 +322,8 @@ export const education: EducationItem[] = [
         en: 'Industry Now Curriculum Pathway (Project INC)',
         zh: 'Industry Now 课程路径 (Project INC)',
       },
+    ],
+    achievements: [
       {
         en: 'Director\'s Honour Roll (2024, 2025)',
         zh: '院长荣誉榜 (2024， 2025)',
@@ -339,27 +341,27 @@ export const education: EducationItem[] = [
       zh: '大学预科课程',
     },
     period: 'Aug 2022 - Feb 2023',
-    details: [
+    achievements: [
       {
-        en: 'Awarded Best in Mathematics',
+        en: 'Best in Mathematics Award',
         zh: '数学成绩最佳奖',
       },
     ],
   },
-  {
-    school: 'MCTA Chinese High School',
-    qualification: {
-      en: 'High School Level 1 - Gao Yi',
-      zh: '高中一年级（高一）',
-    },
-    period: 'Aug 2021 - Jul 2022',
-    details: [
-      {
-        en: 'Awarded Best in overall score in the mid-term and final examinations',
-        zh: '期中与期末考试总成绩第一名',
-      },
-    ],
-  },
+  // {
+  //   school: 'MCTA Chinese High School',
+  //   qualification: {
+  //     en: 'High School Level 1 - Gao Yi',
+  //     zh: '高中一年级（高一）',
+  //   },
+  //   period: 'Aug 2021 - Jul 2022',
+  //   details: [
+  //     {
+  //       en: 'Awarded Best in overall score in the mid-term and final examinations',
+  //       zh: '期中与期末考试总成绩第一名',
+  //     },
+  //   ],
+  // },
   {
     school: 'BEHS-16',
     qualification: {
@@ -367,7 +369,7 @@ export const education: EducationItem[] = [
       zh: '缅甸高中毕业证书（相当于 GCE O 水准）',
     },
     period: 'Jun 2021 - Apr 2022',
-    details: [
+    achievements: [
       {
         en: '5 distinctions in English, Mathematics, Chemistry, Physics and Biology',
         zh: '英语，数学，化学，物理和生物五科优异成绩',

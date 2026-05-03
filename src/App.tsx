@@ -511,6 +511,20 @@ function App() {
                 {featuredExperience.summary[lang]}
               </p>
 
+              {featuredExperience.highlight ? (
+                <div className="experience-main-project">
+                  <p className="section-tag">
+                    {lang === 'en'
+                      ? 'Main Internship Project'
+                      : '主要实习项目'}
+                  </p>
+                  <p>{featuredExperience.highlight[lang]}</p>
+                </div>
+              ) : null}
+
+              <p className="experience-list-label">
+                {lang === 'en' ? 'Other Contributions' : '其他贡献'}
+              </p>
               <ul className="experience-highlight-list">
                 {featuredExperience.details.map((detail, i) => (
                   <li key={i}>{detail[lang]}</li>
@@ -813,9 +827,27 @@ function App() {
                     {firstEducation.qualification[lang]}
                   </p>
 
-                  {firstEducation.details.map((detail,i) => (
-                    <p key={i}>{detail[lang]}</p>
-                  ))}
+                  {firstEducation.details?.length ? (
+                    <div className="education-detail-group">
+                      <p className="education-detail-label">
+                        {lang === 'en' ? 'Details' : '详情'}
+                      </p>
+                      {firstEducation.details.map((detail, i) => (
+                        <p key={i}>{detail[lang]}</p>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  {firstEducation.achievements?.length ? (
+                    <div className="education-detail-group education-achievement-group">
+                      <p className="education-detail-label">
+                        {lang === 'en' ? 'Achievements' : '成就'}
+                      </p>
+                      {firstEducation.achievements.map((achievement, i) => (
+                        <p key={i}>{achievement[lang]}</p>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -848,9 +880,27 @@ function App() {
                     <p>{item.qualification[lang]}</p>
                     <p className="meta-line">{item.period}</p>
 
-                    {item.details.map((detail, i) => (
-                      <p key={i}>{detail[lang]}</p>
-                    ))}
+                    {item.details?.length ? (
+                      <div className="education-detail-group">
+                        <p className="education-detail-label">
+                          {lang === 'en' ? 'Details' : '详情'}
+                        </p>
+                        {item.details.map((detail, i) => (
+                          <p key={i}>{detail[lang]}</p>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    {item.achievements?.length ? (
+                      <div className="education-detail-group education-achievement-group">
+                        <p className="education-detail-label">
+                          {lang === 'en' ? 'Achievements' : '成就'}
+                        </p>
+                        {item.achievements.map((achievement, i) => (
+                          <p key={i}>{achievement[lang]}</p>
+                        ))}
+                      </div>
+                    ) : null}
                   </article>
                 ))}
               </div>
@@ -998,8 +1048,8 @@ function App() {
         <div className="container footer-inner">
           <p className="footer-copy">
             {lang === 'en'
-              ? `© ${new Date().getFullYear()} All rights reserved.`
-              : `© ${new Date().getFullYear()} 版权所有`}
+              ? `© ${new Date().getFullYear()} Wai Phyo Aung. All rights reserved.`
+              : `© ${new Date().getFullYear()} Wai Phyo Aung. 版权所有`}
           </p>
         </div>
       </footer>
