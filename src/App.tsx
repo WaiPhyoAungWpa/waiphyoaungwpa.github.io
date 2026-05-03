@@ -61,6 +61,7 @@ function App() {
   const [showAllEducation, setShowAllEducation] = useState(false)
   const [showAllProjects, setShowAllProjects] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [activeActivityIndex, setActiveActivityIndex] = useState(0)
   const [copiedField, setCopiedField] = useState<string | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -130,6 +131,8 @@ function App() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
   const openProjectModal = (project: Project) => setSelectedProject(project)
   const closeProjectModal = () => setSelectedProject(null)
+  const openImageViewer = (image: string) => setSelectedImage(image)
+  const closeImageViewer = () => setSelectedImage(null)
   const toggleTheme = () => {
     setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))
   }
@@ -705,6 +708,8 @@ function App() {
                       key={photo}
                       src={photo}
                       alt={`${selectedProject.title[lang]} screenshot`}
+                      onClick={() => openImageViewer(photo)}
+                      className="project-modal-photo-clickable"
                     />
                   ))}
                 </div>
@@ -714,7 +719,7 @@ function App() {
                 <h4>{lang === 'en' ? 'Video demo' : '演示视频'}</h4>
 
                 {selectedProject.videoUrl || selectedProject.instagramReelUrl ? (
-                  <div className="project-modal-video">
+                  <div className={`project-modal-video ${selectedProject.videoUrl && selectedProject.instagramReelUrl ? 'has-multiple-videos' : ''}`}>
                     {selectedProject.videoUrl && selectedProjectVideoEmbedUrl && (
                       <div className="project-modal-video-preview">
                         <iframe
@@ -728,7 +733,7 @@ function App() {
                       </div>
                     )}
                     {selectedProject.instagramReelUrl && selectedProjectInstagramEmbedUrl && (
-                      <div className="project-modal-video-preview">
+                      <div className="project-modal-video-preview is-instagram-reel">
                         <iframe
                           src={selectedProjectInstagramEmbedUrl}
                           title={`${selectedProject.title[lang]} Instagram reel`}
@@ -753,6 +758,31 @@ function App() {
                   </p>
                 )}
               </div>
+            </div>
+          </div>
+        )}
+
+        {selectedImage && (
+          <div className="image-viewer-overlay" onClick={closeImageViewer}>
+            <div className="image-viewer-container" onClick={(e) => e.stopPropagation()}>
+              <button
+                className="image-viewer-close"
+                onClick={closeImageViewer}
+                aria-label="Close image viewer"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+              <img src={selectedImage} alt="Full size image" className="image-viewer-image" />
             </div>
           </div>
         )}
