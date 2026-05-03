@@ -31,8 +31,9 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: 'React.js', featured: true },
       { name: 'Node.js', featured: true },
-      { name: 'REST APIs' },
       { name: '.NET' },
+      { name: 'REST APIs' },
+      { name: 'Telegram Bot API'}
     ],
   },
   {
@@ -53,6 +54,7 @@ export const skillGroups: SkillGroup[] = [
     },
     skills: [
       { name: 'GitHub', featured: true },
+      { name: 'Raspberry Pi' },
       { name: 'Visual Studio Code', featured: true },
       { name: 'Microsoft Visual Studio' },
       { name: 'Cursor' },
@@ -82,7 +84,8 @@ export const skillGroups: SkillGroup[] = [
       zh: '方法与实践',
     },
     skills: [
-      { name: 'Software Engineering Practices', featured: true },
+      { name: 'OOP (Object-Oriented Programming)', featured: true },
+      { name: 'Agile/Scrum', featured: true },
       { name: 'CI/CD Workflows' },
     ],
   },
@@ -147,7 +150,7 @@ export const projects: Project[] = [
       en: 'Designed and implemented an approval workflow integrating Jira Service Management with Microsoft Power Automate using REST APIs and HTTP webhooks.',
       zh: '设计并实现审批流程，将 Jira Service Management 与 Microsoft Power Automate 通过 REST API 和 HTTP Webhook 集成。',
     },
-    stack: ['Jira Automation', 'Microsoft Power Automate'],
+    stack: ['Jira Automation', 'Microsoft Power Automate', 'REST APIs', 'HTTP Webhooks'],
     image: `images/projects/workflow.png`,
     details: [
       {
@@ -177,7 +180,7 @@ export const projects: Project[] = [
       en: 'Developed an ERP (Enterprise Resource Planning) system to support daily spa operations as part of a 14-member team.',
       zh: '作为 14 人团队的一员，开发用于支持水疗业务日常运营的 ERP (企业资源计划) 系统。',
     },
-    stack: ['React', 'Node.js', 'PostgreSQL'],
+    stack: ['React', 'Node.js', 'PostgreSQL', 'REST APIs' ],
     image: `images/projects/erp.jpeg`,
     details: [
       {
@@ -216,7 +219,7 @@ export const projects: Project[] = [
       en: 'Designed and developed a full-stack booking and management system from scratch, including ERD, wireframes and task planning.',
       zh: '从零开始设计并开发全栈预订与管理系统，包括实体关系图，线框图和任务规划。',
     },
-    stack: ['Jakarta EE', 'PostgreSQL', 'Eclipse'],
+    stack: ['Jakarta EE', 'JSP', 'Servlets', 'PostgreSQL', 'Eclipse'],
     image: `images/projects/cleaning.png`,
     details: [
       {
@@ -284,7 +287,7 @@ export const projects: Project[] = [
       en: 'Applied the CDIO (Conceive-Design-Implement-Operate) framework to structure the development process.',
       zh: '使用 CDIO (构思-设计-实现-运作) 框架对系统开发过程进行结构化管理。',
     },
-    stack: ['Python', 'Raspberry Pi'],
+    stack: ['Python', 'Raspberry Pi', 'Telegram Bot API' ],
     image: `images/projects/iot.png`,
     details: [
       {
