@@ -378,7 +378,7 @@ function App() {
 
               <div className="hero-photo-frame">
                 <img
-                  src={`images/profile.png`}
+                  src={`images/profile.jpeg`}
                   alt={lang === 'en' ? 'Profile portrait' : '个人头像'}
                   className="hero-photo"
                 />
